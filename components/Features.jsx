@@ -7,42 +7,46 @@ const FEATURES = [
   {
     num: '01',
     icon: '🔎',
-    iconBg: 'rgba(74,143,255,0.1)',
+    proc: 'tesseract-ocr',
+    pid: '1042',
     title: 'Text Search',
     desc: 'Circle any text on screen. KenxSearch runs multi-strategy OCR, extracts the words, and opens a Google search — all in under a second.',
-    tag: 'Powered by Tesseract OCR',
-    tagColor: 'var(--accent)',
-    tagBorder: 'rgba(74,143,255,0.2)',
+    tag: 'tesseract v5.x',
+    color: 'var(--green)',
+    colorDim: 'rgba(57,211,83,0.08)',
   },
   {
     num: '02',
     icon: '🖼',
-    iconBg: 'rgba(77,255,158,0.08)',
+    proc: 'google-lens',
+    pid: '1043',
     title: 'Visual Search',
     desc: 'Circle any image, logo, or object. Google Lens identifies it visually — no text needed. Find products, landmarks, plants, anything.',
-    tag: 'Google Lens powered',
-    tagColor: 'var(--green)',
-    tagBorder: 'rgba(77,255,158,0.2)',
+    tag: 'google-lens',
+    color: 'var(--cyan)',
+    colorDim: 'rgba(45,212,191,0.08)',
   },
   {
     num: '03',
     icon: '🌏',
-    iconBg: 'rgba(255,209,102,0.08)',
+    proc: 'translate-mode',
+    pid: '1044',
     title: 'Translate',
     desc: 'Circle text in any language — Korean, Japanese, Arabic, Chinese, Hindi. Google Lens translates natively. No language packs required.',
-    tag: 'All scripts supported',
-    tagColor: 'var(--yellow)',
-    tagBorder: 'rgba(255,209,102,0.2)',
+    tag: 'all scripts',
+    color: 'var(--amber)',
+    colorDim: 'rgba(229,165,10,0.08)',
   },
   {
     num: '04',
     icon: '🛍',
-    iconBg: 'rgba(255,94,94,0.08)',
+    proc: 'shopping-mode',
+    pid: '1045',
     title: 'Shopping',
     desc: 'Circle a product, outfit, or object and jump straight to Google Shopping results. Find where to buy anything you see on screen.',
-    tag: 'Google Shopping tab',
-    tagColor: 'var(--red)',
-    tagBorder: 'rgba(255,94,94,0.2)',
+    tag: 'google-shopping',
+    color: 'var(--red)',
+    colorDim: 'rgba(255,92,92,0.08)',
   },
 ]
 
@@ -55,28 +59,37 @@ export default function Features() {
       <div ref={headerRef} className={`${styles.header} fade-up`}>
         <p className="section-label">Features</p>
         <h2 className="section-title">
-          Four ways to search,<br />one gesture.
+          Four modes.<br />One gesture.
         </h2>
         <p className="section-sub">
           Circle anything — a word, an object, a product, a foreign script.
-          KenxSearch knows what to do with it.
+          KenxSearch knows what to do.
         </p>
       </div>
 
       <div ref={gridRef} className={`${styles.grid} fade-up`}>
         {FEATURES.map(f => (
-          <div key={f.num} className={styles.card}>
-            <span className={styles.num}>{f.num}</span>
-            <div className={styles.icon} style={{ background: f.iconBg }}>
-              {f.icon}
+          <div key={f.num} className={styles.card} style={{ '--card-color': f.color, '--card-dim': f.colorDim }}>
+            {/* Window titlebar */}
+            <div className={styles.cardBar}>
+              <div className={styles.cardBarLeft}>
+                <span className={styles.cardBarDot} style={{ background: f.color }} />
+                <span className={styles.cardBarProc}>{f.proc}</span>
+                <span className={styles.cardBarPid}>PID {f.pid}</span>
+              </div>
+              <span className={styles.cardNum}>{f.num}</span>
             </div>
-            <h3 className={styles.title}>{f.title}</h3>
-            <p className={styles.desc}>{f.desc}</p>
-            <div
-              className={styles.tag}
-              style={{ color: f.tagColor, borderColor: f.tagBorder }}
-            >
-              <span>●</span> {f.tag}
+
+            <div className={styles.cardBody}>
+              <div className={styles.iconWrap} style={{ background: f.colorDim }}>
+                <span className={styles.icon}>{f.icon}</span>
+              </div>
+              <h3 className={styles.title}>{f.title}</h3>
+              <p className={styles.desc}>{f.desc}</p>
+              <div className={styles.tag} style={{ color: f.color, borderColor: f.color + '33' }}>
+                <span className={styles.tagDot} style={{ background: f.color }} />
+                {f.tag}
+              </div>
             </div>
           </div>
         ))}

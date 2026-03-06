@@ -16,14 +16,21 @@ export default function InstallCommand({ centered = false }) {
 
   return (
     <div className={`${styles.wrap} ${centered ? styles.centered : ''}`}>
-      <span className={styles.prompt}>$</span>
+      <div className={styles.promptRow}>
+        <span className={styles.user}>user</span>
+        <span className={styles.at}>@</span>
+        <span className={styles.host}>linux</span>
+        <span className={styles.colon}>:</span>
+        <span className={styles.path}>~</span>
+        <span className={styles.dollar}>$</span>
+      </div>
       <span className={styles.cmd}>{INSTALL_CMD}</span>
       <button
         className={`${styles.copyBtn} ${copied ? styles.copied : ''}`}
         onClick={handleCopy}
         aria-label="Copy install command"
       >
-        {copied ? 'copied!' : 'copy'}
+        {copied ? '✓ copied' : 'copy'}
       </button>
     </div>
   )

@@ -1,58 +1,84 @@
 .wrap {
   display: flex;
   align-items: center;
-  gap: 10px;
-  background: var(--bg2);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-  padding: 14px 20px;
+  gap: 8px;
+  background: var(--bg3);
+  border: 1px solid var(--border2);
+  border-left: 3px solid var(--green);
+  border-radius: var(--radius-sm);
+  padding: 12px 16px;
   font-family: var(--font-mono);
-  font-size: 13px;
-  max-width: 620px;
+  font-size: 12px;
   width: 100%;
-  margin-bottom: 40px;
   overflow: hidden;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.wrap:hover {
+  border-color: var(--border3);
+  box-shadow: 0 0 20px rgba(57, 211, 83, 0.08);
 }
 
 .centered {
+  max-width: 680px;
   margin-left: auto;
   margin-right: auto;
 }
 
-.prompt {
-  color: var(--muted);
+/* Bash prompt parts */
+.promptRow {
+  display: flex;
+  align-items: center;
   flex-shrink: 0;
+  gap: 0;
+}
+
+.user { color: var(--green); font-weight: 500; }
+.at   { color: var(--muted2); }
+.host { color: var(--cyan); font-weight: 500; }
+.colon { color: var(--muted2); }
+.path { color: var(--blue); }
+.dollar {
+  color: var(--muted2);
+  margin-left: 4px;
+  margin-right: 4px;
 }
 
 .cmd {
-  color: var(--accent2);
+  color: var(--text);
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   flex: 1;
+  font-size: 12px;
+  opacity: 0.9;
 }
 
 .copyBtn {
   margin-left: auto;
-  background: var(--bg3);
+  background: var(--bg2);
   border: 1px solid var(--border);
-  color: var(--muted);
+  color: var(--muted2);
   padding: 4px 10px;
-  border-radius: 6px;
-  font-size: 11px;
+  border-radius: var(--radius-sm);
+  font-size: 10px;
   font-family: var(--font-mono);
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.15s;
   white-space: nowrap;
   flex-shrink: 0;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .copyBtn:hover {
   background: var(--border);
   color: var(--text);
+  border-color: var(--border2);
 }
 
 .copied {
   color: var(--green) !important;
   border-color: var(--green) !important;
+  background: var(--green-glow) !important;
 }

@@ -3,7 +3,6 @@ import { useEffect, useRef } from 'react'
 /**
  * Attaches an IntersectionObserver to a ref and adds the
  * "visible" class when the element enters the viewport.
- * Combine with the global .fade-up / .fade-up.visible CSS.
  */
 export function useScrollFade(delay = 0) {
   const ref = useRef(null)
