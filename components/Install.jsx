@@ -1,85 +1,42 @@
 'use client'
-
-import { useScrollFade } from '../hooks/useScrollFade'
+import s from './Install.module.css'
 import InstallCommand from './InstallCommand'
-import styles from './Install.module.css'
+import useScrollFade from '../hooks/useScrollFade'
 
-const DISTROS = [
-  { name: 'Ubuntu',     color: '#e95420' },
-  { name: 'Fedora',     color: '#51a2da' },
-  { name: 'Arch',       color: '#1793d1' },
-  { name: 'Debian',     color: '#d70a53' },
-  { name: 'openSUSE',   color: '#73ba25' },
-  { name: 'KDE Plasma', color: '#1d99f3' },
-  { name: 'GNOME',      color: '#4a86cf' },
-]
-
-const REQS = [
-  { key: 'git',        val: 'required' },
-  { key: 'python',     val: '3.8+' },
-  { key: 'pkg-mgr',   val: 'auto-detected' },
-  { key: 'playwright', val: 'auto-installed' },
+const distros = [
+  { name: 'Arch', color: '#1793d1' },
+  { name: 'Fedora', color: '#3c6eb4' },
+  { name: 'Ubuntu', color: '#e95420' },
+  { name: 'Debian', color: '#a80030' },
 ]
 
 export default function Install() {
   const ref = useScrollFade()
 
   return (
-    <section id="install" className="section-wrap">
-      <div ref={ref} className={`${styles.card} fade-up`}>
-        <div className={styles.glow} aria-hidden />
+    <section id="install" className="section-wrap" ref={ref}>
+      <div className={`${s.card} fade-up`}>
+        <div className={s.glow} />
 
-        {/* Terminal title bar */}
-        <div className={styles.termBar}>
-          <div className={styles.termDots}>
-            <span style={{ background: '#ff5f57' }} />
-            <span style={{ background: '#febc2e' }} />
-            <span style={{ background: '#28c840' }} />
-          </div>
-          <span className={styles.termTitle}>bootstrap.sh — kenxsearch installer</span>
-          <div className={styles.termBadge}>
-            <span className={styles.termBadgeDot} />
-            running
-          </div>
-        </div>
+        <span className="section-label" style={{ justifyContent: 'center' }}>Install</span>
+        <h2 className="section-title" style={{ textAlign: 'center' }}>One command. That&apos;s it.</h2>
+        <p className="section-sub" style={{ textAlign: 'center', margin: '0 auto 32px' }}>
+          The installer clones the repo, installs system deps, sets up a Python venv, and gets Playwright ready.
+        </p>
 
-        <div className={styles.body}>
-          <div className={styles.meta}>
-            <p className="section-label">Install</p>
-            <h2 className={`section-title ${styles.title}`}>
-              One command.<br />That&apos;s it.
-            </h2>
-            <p className={`section-sub ${styles.sub}`}>
-              No manual chmod. No cloning. Paste this into your terminal —
-              KenxSearch installs itself, sets up a venv, and adds itself to your PATH.
-            </p>
-          </div>
+        <InstallCommand centered />
 
-          <div className={styles.cmdBlock}>
-            <InstallCommand />
-            <div className={styles.reqs}>
-              {REQS.map(r => (
-                <div key={r.key} className={styles.req}>
-                  <span className={styles.reqKey}>{r.key}</span>
-                  <span className={styles.reqDots}>············</span>
-                  <span className={styles.reqVal}>{r.val}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
+        <p className={s.note}>
+          Prerequisites: git, curl · Installs: tesseract-ocr, python3, PyQt6, Playwright
+        </p>
 
-        {/* Distro compatibility */}
-        <div className={styles.distros}>
-          <span className={styles.distrosLabel}>tested on</span>
-          <div className={styles.distroList}>
-            {DISTROS.map(d => (
-              <div key={d.name} className={styles.distroTag}>
-                <span className={styles.distroDot} style={{ background: d.color }} />
-                {d.name}
-              </div>
-            ))}
-          </div>
+        <div className={s.distros}>
+          {distros.map((d) => (
+            <span key={d.name} className={s.distroTag}>
+              <span className={s.distroDot} style={{ background: d.color }} />
+              {d.name}
+            </span>
+          ))}
         </div>
       </div>
     </section>

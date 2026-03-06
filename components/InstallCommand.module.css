@@ -1,47 +1,54 @@
 .wrap {
   display: flex;
   align-items: center;
-  gap: 8px;
-  background: var(--bg3);
+  gap: 10px;
+  background: var(--bg);
   border: 1px solid var(--border2);
-  border-left: 3px solid var(--green);
-  border-radius: var(--radius-sm);
-  padding: 12px 16px;
+  border-radius: var(--radius-md);
+  padding: 14px 18px;
   font-family: var(--font-mono);
-  font-size: 12px;
+  font-size: 13px;
+  max-width: 720px;
   width: 100%;
+  margin-bottom: 24px;
   overflow: hidden;
-  transition: border-color 0.2s, box-shadow 0.2s;
-}
-
-.wrap:hover {
-  border-color: var(--border3);
-  box-shadow: 0 0 20px rgba(57, 211, 83, 0.08);
 }
 
 .centered {
-  max-width: 680px;
   margin-left: auto;
   margin-right: auto;
 }
 
-/* Bash prompt parts */
-.promptRow {
+.prompt {
+  flex-shrink: 0;
   display: flex;
   align-items: center;
-  flex-shrink: 0;
-  gap: 0;
 }
 
-.user { color: var(--green); font-weight: 500; }
-.at   { color: var(--muted2); }
-.host { color: var(--cyan); font-weight: 500; }
-.colon { color: var(--muted2); }
-.path { color: var(--blue); }
+.user {
+  color: var(--teal);
+}
+
+.at {
+  color: var(--muted);
+}
+
+.host {
+  color: var(--teal);
+}
+
+.colon {
+  color: var(--muted);
+}
+
+.path {
+  color: var(--accent);
+}
+
 .dollar {
-  color: var(--muted2);
-  margin-left: 4px;
-  margin-right: 4px;
+  color: var(--muted);
+  margin-left: 1px;
+  margin-right: 8px;
 }
 
 .cmd {
@@ -50,35 +57,29 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   flex: 1;
-  font-size: 12px;
-  opacity: 0.9;
 }
 
 .copyBtn {
   margin-left: auto;
-  background: var(--bg2);
+  background: var(--bg3);
   border: 1px solid var(--border);
   color: var(--muted2);
   padding: 4px 10px;
-  border-radius: var(--radius-sm);
-  font-size: 10px;
+  border-radius: 6px;
+  font-size: 11px;
   font-family: var(--font-mono);
   cursor: pointer;
-  transition: all 0.15s;
+  transition: all 0.2s;
   white-space: nowrap;
   flex-shrink: 0;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
 }
 
 .copyBtn:hover {
   background: var(--border);
   color: var(--text);
-  border-color: var(--border2);
 }
 
 .copied {
-  color: var(--green) !important;
-  border-color: var(--green) !important;
-  background: var(--green-glow) !important;
+  color: var(--teal) !important;
+  border-color: var(--teal) !important;
 }

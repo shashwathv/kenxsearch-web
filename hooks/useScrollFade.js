@@ -1,31 +1,36 @@
 import { useEffect, useRef } from 'react'
 
 /**
- * Attaches an IntersectionObserver to a ref and adds the
- * "visible" class when the element enters the viewport.
+ * Attaches an IntersectionObserver to the ref element AND
+ * all .fade-up children within it, adding the "visible" class
+ * when each enters the viewport.
  */
-export function useScrollFade(delay = 0) {
+export default function useScrollFade() {
   const ref = useRef(null)
 
   useEffect(() => {
     const el = ref.current
     if (!el) return
 
-    if (delay) el.style.transitionDelay = `${delay}s`
+    // Observe ALL .fade-up elements inside the section
+    const targets = el.querySelectorAll('.fade-up')
 
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          el.classList.add('visible')
-          observer.disconnect()
-        }
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible')
+            observer.unobserve(entry.target)
+          }
+        })
       },
-      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+      { threshold: 0.1, rootMargin: '0px 0px -30px 0px' }
     )
 
-    observer.observe(el)
+    targets.forEach((t) => observer.observe(t))
+
     return () => observer.disconnect()
-  }, [delay])
+  }, [])
 
   return ref
 }

@@ -5,105 +5,66 @@
 .grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 3px;
+  gap: 2px;
   background: var(--border);
-  border: 1px solid var(--border2);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-lg);
   overflow: hidden;
+  border: 1px solid var(--border);
 }
 
 .card {
-  background: var(--bg2);
+  background: var(--bg);
+  padding: 44px;
   position: relative;
   overflow: hidden;
-  transition: background 0.2s;
+  transition: background 0.3s;
 }
 
 .card:hover {
-  background: var(--bg3);
+  background: var(--bg2);
 }
 
-.card::after {
+.card::before {
   content: '';
   position: absolute;
-  left: 0; top: 0; bottom: 0;
-  width: 2px;
-  background: var(--card-color);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent), var(--violet), transparent);
   opacity: 0;
-  transition: opacity 0.2s;
+  transition: opacity 0.3s;
 }
 
-.card:hover::after {
+.card:hover::before {
   opacity: 1;
 }
 
-/* Window titlebar per card */
-.cardBar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 16px;
-  height: 32px;
-  background: var(--bg3);
-  border-bottom: 1px solid var(--border);
-}
-
-.cardBarLeft {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.cardBarDot {
-  width: 7px; height: 7px;
-  border-radius: 50%;
-  flex-shrink: 0;
-}
-
-.cardBarProc {
+.num {
+  display: block;
   font-family: var(--font-mono);
-  font-size: 10px;
-  color: var(--muted2);
-  letter-spacing: 0.06em;
-}
-
-.cardBarPid {
-  font-family: var(--font-mono);
-  font-size: 10px;
+  font-size: 11px;
   color: var(--muted);
-  letter-spacing: 0.04em;
+  letter-spacing: 0.1em;
+  margin-bottom: 20px;
 }
 
-.cardNum {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  color: var(--muted);
-  letter-spacing: 0.08em;
-}
-
-.cardBody {
-  padding: 32px 36px 36px;
-}
-
-.iconWrap {
-  width: 40px; height: 40px;
-  border-radius: var(--radius-sm);
+.icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 18px;
-}
-
-.icon {
   font-size: 18px;
 }
 
 .title {
   font-family: var(--font-display);
-  font-size: 26px;
+  font-size: 21px;
   font-weight: 600;
-  letter-spacing: 0.01em;
-  text-transform: uppercase;
+  letter-spacing: -0.01em;
   margin-bottom: 10px;
   color: var(--text2);
 }
@@ -111,31 +72,37 @@
 .desc {
   font-size: 14px;
   color: var(--muted2);
-  line-height: 1.75;
+  line-height: 1.7;
   font-weight: 300;
-  font-family: var(--font-body);
 }
 
 .tag {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  margin-top: 18px;
+  margin-top: 20px;
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 10px;
   padding: 4px 10px;
-  border-radius: var(--radius-sm);
+  border-radius: 100px;
   border: 1px solid;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.03em;
 }
 
 .tagDot {
-  width: 5px; height: 5px;
+  display: inline-block;
+  width: 5px;
+  height: 5px;
   border-radius: 50%;
   flex-shrink: 0;
 }
 
 @media (max-width: 768px) {
-  .grid { grid-template-columns: 1fr; }
-  .cardBody { padding: 24px 20px 28px; }
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .card {
+    padding: 32px 24px;
+  }
 }

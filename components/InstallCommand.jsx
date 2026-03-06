@@ -1,35 +1,30 @@
 'use client'
-
 import { useState } from 'react'
-import styles from './InstallCommand.module.css'
+import s from './InstallCommand.module.css'
 
-const INSTALL_CMD = 'curl -fsSL https://raw.githubusercontent.com/shashwathv/lensix/main/scripts/bootstrap.sh | bash'
+const CMD = 'bash -c "$(curl -fsSL https://raw.githubusercontent.com/shashwathv/KenXSearch/main/scripts/bootstrap.sh)"'
 
 export default function InstallCommand({ centered = false }) {
   const [copied, setCopied] = useState(false)
 
-  const handleCopy = () => {
-    navigator.clipboard.writeText(INSTALL_CMD)
+  const copy = async () => {
+    await navigator.clipboard.writeText(CMD)
     setCopied(true)
     setTimeout(() => setCopied(false), 2000)
   }
 
   return (
-    <div className={`${styles.wrap} ${centered ? styles.centered : ''}`}>
-      <div className={styles.promptRow}>
-        <span className={styles.user}>user</span>
-        <span className={styles.at}>@</span>
-        <span className={styles.host}>linux</span>
-        <span className={styles.colon}>:</span>
-        <span className={styles.path}>~</span>
-        <span className={styles.dollar}>$</span>
-      </div>
-      <span className={styles.cmd}>{INSTALL_CMD}</span>
-      <button
-        className={`${styles.copyBtn} ${copied ? styles.copied : ''}`}
-        onClick={handleCopy}
-        aria-label="Copy install command"
-      >
+    <div className={`${s.wrap} ${centered ? s.centered : ''}`}>
+      <span className={s.prompt}>
+        <span className={s.user}>user</span>
+        <span className={s.at}>@</span>
+        <span className={s.host}>linux</span>
+        <span className={s.colon}>:</span>
+        <span className={s.path}>~</span>
+        <span className={s.dollar}>$</span>
+      </span>
+      <span className={s.cmd}>{CMD}</span>
+      <button className={`${s.copyBtn} ${copied ? s.copied : ''}`} onClick={copy}>
         {copied ? '✓ copied' : 'copy'}
       </button>
     </div>
