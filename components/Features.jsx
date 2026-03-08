@@ -1,4 +1,5 @@
 'use client'
+import { useRef } from 'react'
 import s from './Features.module.css'
 import useScrollFade from '../hooks/useScrollFade'
 
@@ -8,38 +9,98 @@ const features = [
     icon: '🔍',
     iconBg: 'var(--accent-dim)',
     title: 'Smart Text Search',
-    desc: 'Multi-strategy OCR with Tesseract + OpenCV preprocessing. Extracts text from any app, any language, then searches Google instantly.',
+    desc: 'OCR extracts text using Tesseract + OpenCV preprocessing, then searches Google. Falls back to visual search if no text is found.',
     tag: 'OCR + Search',
     tagColor: 'var(--accent)',
+    video: '/text_search.mp4',
   },
   {
     num: '02',
     icon: '📷',
     iconBg: 'var(--violet-dim)',
     title: 'Visual Search',
-    desc: 'Upload your selection to Google Lens for visual recognition. Identify products, landmarks, plants, animals — anything visual.',
+    desc: 'Uploads your selection directly to Google Lens for visual recognition. Identify products, landmarks, plants, animals — anything visual.',
     tag: 'Google Lens',
     tagColor: 'var(--violet)',
+    video: '/visual-search.mp4',
   },
   {
     num: '03',
     icon: '🌐',
     iconBg: 'var(--teal-dim)',
     title: 'Translate',
-    desc: 'Circle foreign text and translate it via Google Lens translate mode. Supports 100+ languages with automatic detection.',
+    desc: 'Opens Google Lens in translate mode with automatic language detection. Supports 100+ languages out of the box.',
     tag: '100+ languages',
     tagColor: 'var(--teal)',
+    video: '/translate_search.mp4',
   },
   {
     num: '04',
     icon: '🛒',
     iconBg: 'var(--amber-dim)',
     title: 'Shopping',
-    desc: 'See a product you like? Circle it and find where to buy it, compare prices across sellers, and browse similar items.',
+    desc: 'Opens Google Lens and switches to the Shopping tab. Find where to buy it, compare prices, and browse similar items.',
     tag: 'Price compare',
     tagColor: 'var(--amber)',
+    video: null,
   },
 ]
+
+function FeatureCard({ f }) {
+  const vidRef = useRef(null)
+
+  const handleMouseEnter = () => {
+    if (vidRef.current) {
+      vidRef.current.currentTime = 0
+      vidRef.current.play()
+    }
+  }
+
+  const handleMouseLeave = () => {
+    if (vidRef.current) {
+      vidRef.current.pause()
+    }
+  }
+
+  return (
+    <div
+      className={`${s.card} fade-up`}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
+      <span className={s.num}>{f.num}</span>
+      <div className={s.icon} style={{ background: f.iconBg }}>
+        {f.icon}
+      </div>
+      <h3 className={s.title}>{f.title}</h3>
+      <p className={s.desc}>{f.desc}</p>
+
+      <div className={s.videoWrap}>
+        {f.video ? (
+          <video
+            ref={vidRef}
+            className={s.video}
+            src={f.video}
+            muted
+            playsInline
+            loop
+            preload="metadata"
+          />
+        ) : (
+          <div className={s.videoPlaceholder}>
+            <span className={s.placeholderIcon}>🎬</span>
+            <span className={s.placeholderText}>Demo coming soon</span>
+          </div>
+        )}
+      </div>
+
+      <span className={s.tag} style={{ borderColor: f.tagColor, color: f.tagColor }}>
+        <span className={s.tagDot} style={{ background: f.tagColor }} />
+        {f.tag}
+      </span>
+    </div>
+  )
+}
 
 export default function Features() {
   const ref = useScrollFade()
@@ -56,18 +117,7 @@ export default function Features() {
 
       <div className={s.grid}>
         {features.map((f) => (
-          <div key={f.num} className={`${s.card} fade-up`}>
-            <span className={s.num}>{f.num}</span>
-            <div className={s.icon} style={{ background: f.iconBg }}>
-              {f.icon}
-            </div>
-            <h3 className={s.title}>{f.title}</h3>
-            <p className={s.desc}>{f.desc}</p>
-            <span className={s.tag} style={{ borderColor: f.tagColor, color: f.tagColor }}>
-              <span className={s.tagDot} style={{ background: f.tagColor }} />
-              {f.tag}
-            </span>
-          </div>
+          <FeatureCard key={f.num} f={f} />
         ))}
       </div>
     </section>

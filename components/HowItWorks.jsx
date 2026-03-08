@@ -6,25 +6,25 @@ const steps = [
   {
     num: '01',
     title: 'Install with one command',
-    desc: 'Run the bootstrap script — it clones the repo, installs system deps (tesseract, Python, etc.), sets up a venv, and gets Playwright ready.',
+    desc: 'Run the bootstrap script — it clones the repo to ~/.local/share/KenXSearch, installs system deps, creates a Python venv, and sets up Playwright Chromium.',
   },
   {
     num: '02',
     title: 'Launch the overlay',
-    desc: 'Run KenXSearch from your terminal. A full-screen transparent overlay appears with a hint: "✦ Circle anything to search."',
+    desc: 'Run KenXSearch from your terminal. A full-screen HUD overlay appears: "TERMINAL INITIALIZED // CIRCLE AREA TO ANALYZE."',
   },
   {
     num: '03',
-    title: 'Circle and search',
-    desc: 'Draw a freehand circle. The selection morphs into a rounded rectangle with a pulsing glow. Pick a mode — Search, Visual, Translate, or Shopping.',
+    title: 'Draw and search',
+    desc: 'Draw a circle (or any shape) around anything on screen. The selection snaps into a rectangle with corner brackets and a scanning line. Pick a mode — Search, Visual, Translate, or Shopping.',
   },
 ]
 
 const screenshots = [
-  { icon: '◎', label: 'Full-screen overlay', sub: 'Transparent overlay with PyQt6 — draw anywhere' },
-  { icon: '⧉', label: 'Selection glow', sub: 'Freehand circle morphs into rounded rect with pulse' },
-  { icon: '🔍', label: 'Search results', sub: 'Google Lens results via Playwright browser automation' },
-  { icon: '🌐', label: 'Translate mode', sub: 'Automatic language detection with Google Translate' },
+  { icon: '◎', label: 'HUD overlay', sub: 'Full-screen transparent overlay with tech-style HUD elements', image: '/images/user_interface.png' },
+  { icon: '⧉', label: 'Selection brackets', sub: 'Selection snaps into a rectangle with corner brackets and scanning line', image: '/images/image_selection.png' },
+  { icon: '🔍', label: 'Search results', sub: 'OCR extracts text → Google search, falls back to visual if no text found', image: '/images/visual_search_result.png' },
+  { icon: '🌐', label: 'Translate mode', sub: 'Google Lens translate mode with automatic language detection', image: '/images/translate_result.png' },
 ]
 
 export default function HowItWorks() {
@@ -52,8 +52,14 @@ export default function HowItWorks() {
         {screenshots.map((sc, i) => (
           <div key={i} className={`${s.screenshotCard} fade-up`}>
             <div className={s.screenshotImg}>
-              <span className={s.screenshotIcon}>{sc.icon}</span>
-              <span className={s.screenshotPlaceholder}>[screenshot placeholder]</span>
+              {sc.image ? (
+                <img src={sc.image} alt={sc.label} className={s.image} />
+              ) : (
+                <>
+                  <span className={s.screenshotIcon}>{sc.icon}</span>
+                  <span className={s.screenshotPlaceholder}>[screenshot placeholder]</span>
+                </>
+              )}
             </div>
             <div className={s.screenshotLabel}>{sc.label}</div>
             <div className={s.screenshotSub}>{sc.sub}</div>

@@ -46,7 +46,7 @@
   border: 1px solid rgba(88, 166, 255, 0.15);
   border-radius: 100px;
   padding: 6px 16px;
-  font-size: 11px;
+  font-size: 12px;
   font-family: var(--font-mono);
   color: var(--accent);
   margin-bottom: 32px;
@@ -96,7 +96,7 @@
 }
 
 .sub {
-  font-size: 17px;
+  font-size: 18px;
   color: var(--muted2);
   max-width: 500px;
   line-height: 1.7;
@@ -139,7 +139,7 @@
 
 .demoBarTitle {
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 12px;
   color: var(--muted2);
   display: flex;
   align-items: center;
@@ -148,7 +148,7 @@
 
 .demoBarIcon {
   color: var(--teal);
-  font-size: 10px;
+  font-size: 11px;
 }
 
 .demoBarControls {
@@ -179,42 +179,17 @@
 }
 
 .demoScreen {
-  min-height: 260px;
   background: var(--bg);
-  padding: 24px;
   position: relative;
   overflow: hidden;
+  line-height: 0;
 }
 
-.terminal {
-  text-align: left;
-}
-
-.termLine {
-  font-family: var(--font-mono);
-  font-size: 13px;
-  color: var(--accent);
-  line-height: 1.8;
-  white-space: pre;
-}
-
-.cursor {
-  animation: blink 0.8s step-end infinite;
-  color: var(--accent);
-  font-size: 13px;
-}
-
-.demoTag {
-  position: absolute;
-  bottom: 12px;
-  right: 12px;
-  background: var(--accent-dim);
-  border: 1px solid rgba(138, 180, 248, 0.12);
-  color: var(--muted2);
-  font-size: 10px;
-  font-family: var(--font-mono);
-  padding: 3px 8px;
-  border-radius: 100px;
+.demoVideo {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+  max-height: 450px;
 }
 
 .pills {
@@ -225,14 +200,61 @@
   flex-wrap: wrap;
 }
 
+.pillHint {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 11px;
+  font-family: var(--font-mono);
+  color: var(--muted);
+  letter-spacing: 0.03em;
+  opacity: 0.7;
+}
+
 .pill {
   background: var(--bg2);
   border: 1px solid var(--border);
   border-radius: 100px;
   padding: 7px 16px;
-  font-size: 12px;
+  font-size: 13px;
   color: var(--muted2);
   white-space: nowrap;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.25s, border-color 0.25s, color 0.25s;
+}
+
+.pill:hover {
+  background: var(--bg3);
+  border-color: var(--border2);
+  color: var(--text);
+}
+
+.pillActive {
+  background: rgba(138, 180, 248, 0.1);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* ── Demo placeholder (no video) ── */
+.demoPlaceholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  gap: 12px;
+}
+
+.demoPlaceholderIcon {
+  font-size: 40px;
+  opacity: 0.4;
+}
+
+.demoPlaceholderText {
+  font-size: 13px;
+  font-family: var(--font-mono);
+  color: var(--muted);
+  letter-spacing: 0.04em;
 }
 
 @media (max-width: 768px) {
@@ -244,10 +266,6 @@
     font-size: 180px;
   }
 
-  .demoScreen {
-    min-height: 200px;
-  }
-
   .pills {
     gap: 6px;
   }
@@ -255,5 +273,13 @@
   .pill {
     font-size: 11px;
     padding: 5px 12px;
+  }
+
+  .demoBar {
+    padding: 6px 10px;
+  }
+
+  .demoBarTitle {
+    font-size: 11px;
   }
 }

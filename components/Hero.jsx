@@ -1,44 +1,20 @@
 'use client'
-import { useEffect, useRef, useState } from 'react'
+import { useState } from 'react'
 import s from './Hero.module.css'
 import useScrollFade from '../hooks/useScrollFade'
 import PixelBlast from './PixelBlast'
 
-const BOOT_LINES = [
-  '$ KenXSearch',
-  '  ✦ Circle anything to search',
-  '',
-  '  ↳ overlay engine ready       ✔',
-  '  ↳ Playwright browser loaded  ✔',
-  '  ↳ waiting for selection      …',
-  '',
-  '  circle drawn → analyzing ROI',
-  '  ✔ 3 results found (0.42s)',
+const MODES = [
+  { icon: '🔍', label: 'Text Search', video: '/text_search.mp4' },
+  { icon: '📷', label: 'Visual Search', video: '/visual-search.mp4' },
+  { icon: '🌐', label: 'Translate', video: '/translate_search.mp4' },
+  { icon: '🛒', label: 'Shopping', video: null },
 ]
 
 export default function Hero() {
   const ref = useScrollFade()
-  const [lines, setLines] = useState([])
-  const [charIdx, setCharIdx] = useState(0)
-  const lineRef = useRef(0)
-
-  useEffect(() => {
-    if (lineRef.current >= BOOT_LINES.length) return
-    const currentLine = BOOT_LINES[lineRef.current]
-    if (charIdx <= currentLine.length) {
-      const t = setTimeout(() => {
-        setLines(prev => {
-          const copy = [...prev]
-          copy[lineRef.current] = currentLine.slice(0, charIdx)
-          return copy
-        })
-        setCharIdx(c => c + 1)
-      }, currentLine === '' ? 200 : 30)
-      return () => clearTimeout(t)
-    }
-    lineRef.current += 1
-    setCharIdx(0)
-  }, [charIdx])
+  const [activeIdx, setActiveIdx] = useState(0)
+  const activeMode = MODES[activeIdx]
 
   return (
     <section className={s.hero} ref={ref}>
@@ -71,7 +47,7 @@ export default function Hero() {
       <h1 className={`${s.title} fade-up`}>
         <span className={s.titleAccent}>Circle to search.</span>
         <br />
-        On Linux.
+        For all Linux distros.
       </h1>
 
       <p className={`${s.sub} fade-up`}>
@@ -108,29 +84,38 @@ export default function Hero() {
             </div>
           </div>
           <div className={s.demoScreen}>
-            <div className={s.terminal}>
-              {lines.map((line, i) => (
-                <div key={i} className={s.termLine}>
-                  {line}
-                  {i === lineRef.current && <span className={s.cursor}>█</span>}
-                </div>
-              ))}
-              {lineRef.current >= BOOT_LINES.length && (
-                <div className={s.termLine}>
-                  <span className={s.cursor}>█</span>
-                </div>
-              )}
-            </div>
-            <div className={s.demoTag}>[ replace with demo video ]</div>
+            {activeMode.video ? (
+              <video
+                key={activeMode.video}
+                className={s.demoVideo}
+                src={activeMode.video}
+                autoPlay
+                muted
+                loop
+                playsInline
+              />
+            ) : (
+              <div className={s.demoPlaceholder}>
+                <span className={s.demoPlaceholderIcon}>🎬</span>
+                <span className={s.demoPlaceholderText}>Demo coming soon</span>
+              </div>
+            )}
           </div>
         </div>
 
         <div className={s.pills}>
-          <span className={s.pill}>🔍 Text Search</span>
-          <span className={s.pill}>📷 Visual Search</span>
-          <span className={s.pill}>🌐 Translate</span>
-          <span className={s.pill}>🛒 Shopping</span>
+          {MODES.map((mode, i) => (
+            <button
+              key={mode.label}
+              className={`${s.pill} ${i === activeIdx ? s.pillActive : ''}`}
+              onClick={() => setActiveIdx(i)}
+            >
+              {mode.icon} {mode.label}
+            </button>
+          ))}
         </div>
+
+        <p className={s.pillHint}>↑ Click a mode above to see it in action</p>
       </div>
     </section>
   )

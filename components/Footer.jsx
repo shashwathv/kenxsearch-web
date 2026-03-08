@@ -17,7 +17,7 @@ export default function Footer() {
         </ul>
 
         <span className={s.copy}>
-          © {new Date().getFullYear()} KenXSearch · 見
+          © {new Date().getFullYear()} KenXSearch · 見 - Ken: To See
         </span>
       </div>
     </footer>
