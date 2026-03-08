@@ -11,7 +11,7 @@ const steps = [
   {
     num: '02',
     title: 'Launch the overlay',
-    desc: 'Run lensix from your terminal. A full-screen transparent overlay appears with a hint: "✦ Circle anything to search."',
+    desc: 'Run KenXSearch from your terminal. A full-screen transparent overlay appears with a hint: "✦ Circle anything to search."',
   },
   {
     num: '03',

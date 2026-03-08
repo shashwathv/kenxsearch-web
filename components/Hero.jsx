@@ -5,7 +5,7 @@ import useScrollFade from '../hooks/useScrollFade'
 import PixelBlast from './PixelBlast'
 
 const BOOT_LINES = [
-  '$ lensix',
+  '$ KenXSearch',
   '  ✦ Circle anything to search',
   '',
   '  ↳ overlay engine ready       ✔',
@@ -99,7 +99,7 @@ export default function Hero() {
           <div className={s.demoBar}>
             <span className={s.demoBarTitle}>
               <span className={s.demoBarIcon}>▸</span>
-              lensix — ~/
+              KenXSearch — ~/
             </span>
             <div className={s.demoBarControls}>
               <span className={s.winBtn}>─</span>
