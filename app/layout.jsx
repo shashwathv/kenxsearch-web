@@ -1,5 +1,4 @@
 import '../styles/globals.css'
-import { Analytics } from '@vercel/analytics/react'
 
 export const metadata = {
   title: 'KenxSearch — Circle to Search for Linux',
@@ -34,10 +33,7 @@ export default function RootLayout({ children }) {
           rel="stylesheet"
         />
       </head>
-      <body>
-        {children}
-        <Analytics />
-      </body>
+      <body>{children}</body>
     </html>
   )
 }
