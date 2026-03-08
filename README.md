@@ -33,18 +33,3 @@ kenxsearch-web/
 
 ---
 
-## Development
-
-```bash
-npm install
-npm run dev       # http://localhost:3000
-```
-
-## Deploy to Vercel
-
-1. Push this repo to GitHub (`kenxsearch-web`)
-2. Go to [vercel.com](https://vercel.com) → Import project
-3. Select the repo — Vercel auto-detects Next.js
-4. Deploy — done
-
-No environment variables needed.
