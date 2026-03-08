@@ -1,8 +1,8 @@
-# kenxsearch-web
+# KenXSearch Web
 
-Marketing website for [KenxSearch](https://github.com/shashwathv/kenxsearch) — Circle to Search for Linux.
+Marketing website for [KenXSearch](https://github.com/shashwathv/kenxsearch) — Circle to Search for Linux.
 
-Built with **Next.js 14** (App Router, static export). Deployable to Vercel in one click.
+Built with **Next.js 16** (App Router, static export), React 18, and Three.js (for the PixelBlast background effect). Deployable to Vercel in one click.
 
 ---
 
@@ -15,42 +15,21 @@ kenxsearch-web/
 │   └── page.jsx            ← Home page — assembles all sections
 ├── components/
 │   ├── Navbar.jsx          ← Fixed top nav with scroll detection
-│   ├── Navbar.module.css
-│   ├── Hero.jsx            ← Full-screen hero with demo window
-│   ├── Hero.module.css
+│   ├── Hero.jsx            ← Full-screen hero with animated background
+│   ├── PixelBlast.jsx      ← Animated WebGL background effect (Three.js)
 │   ├── Features.jsx        ← 2×2 feature grid (Search/Visual/Translate/Shopping)
-│   ├── Features.module.css
-│   ├── HowItWorks.jsx      ← 3-step flow + screenshot placeholders
-│   ├── HowItWorks.module.css
-│   ├── Install.jsx         ← One-line install section with distro tags
-│   ├── Install.module.css
+│   ├── HowItWorks.jsx      ← 3-step flow with screenshots
+│   ├── Install.jsx         ← OS support info & install commands
 │   ├── InstallCommand.jsx  ← Reusable copy-to-clipboard command block
-│   ├── InstallCommand.module.css
-│   ├── Footer.jsx
-│   └── Footer.module.css
+│   └── Footer.jsx
 ├── hooks/
 │   └── useScrollFade.js    ← Shared IntersectionObserver scroll animation hook
-├── styles/
-│   └── globals.css         ← Design tokens, reset, shared utilities
 ├── public/
-│   └── images/             ← Drop screenshots and demo video here
+│   └── images/             ← Contains high-res images and UI screenshots
 ├── next.config.js
 ├── package.json
 └── .gitignore
 ```
-
----
-
-## Replacing placeholders
-
-| Placeholder | File | What to put |
-|---|---|---|
-| Demo video | `components/Hero.jsx` → `.demoScreen` | `<video autoPlay loop muted playsInline src="/images/demo.mp4" />` |
-| Screenshot 1 | `components/HowItWorks.jsx` | `<Image src="/images/overlay.png" ... />` |
-| Screenshot 2 | `components/HowItWorks.jsx` | `<Image src="/images/buttons.png" ... />` |
-| Screenshot 3 | `components/HowItWorks.jsx` | `<Image src="/images/translate.png" ... />` |
-| Screenshot 4 | `components/HowItWorks.jsx` | `<Image src="/images/results.png" ... />` |
-| Logo/favicon | `public/` | `favicon.ico`, `logo.png` |
 
 ---
 
