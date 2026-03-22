@@ -42,7 +42,7 @@ const features = [
     desc: 'Opens Google Lens and switches to the Shopping tab. Find where to buy it, compare prices, and browse similar items.',
     tag: 'Price compare',
     tagColor: 'var(--amber)',
-    video: null,
+    video: '/shopping_feature.mp4',
   },
 ]
 

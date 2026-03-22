@@ -8,7 +8,7 @@ const MODES = [
   { icon: '🔍', label: 'Text Search', video: '/text_search.mp4' },
   { icon: '📷', label: 'Visual Search', video: '/visual-search.mp4' },
   { icon: '🌐', label: 'Translate', video: '/translate_search.mp4' },
-  { icon: '🛒', label: 'Shopping', video: null },
+  { icon: '🛒', label: 'Shopping', video: '/shopping_feature.mp4' },
 ]
 
 export default function Hero() {
