@@ -1,0 +1,38 @@
+Test #1 — KDE Plasma / Kubuntu
+
+Distro: Ubuntu 25.10 "Questing"
+DE: KDE Plasma 6.4.5
+Session type: Wayland (KDE default)
+Result: ✅ Working
+Capture method used: mss via XWayland (Strategy 1)
+Notes: KDE does not block XGetImage through XWayland, so mss succeeds instantly. No external tools needed. All four search modes available (Search, Visual, Translate, Shopping).
+
+Test #2 — GNOME / Arch Linux
+
+Distro: Arch Linux (rolling, updated March 2025)
+DE: GNOME Shell 49.4
+Session type: Wayland
+Result: ⚠️ Partial — app works, background capture blocked
+Capture method used: None — all methods blocked by GNOME 49 security policy
+Fallback: Dark overlay (no desktop background shown behind selection)
+Notes: mss blocked (XGetImage denied), gnome-screenshot blocked (AccessDenied), grim blocked (compositor doesn't support protocol). Selection, HUD, and all four search modes still fully functional. Only cosmetic difference is plain dark background instead of desktop preview.
+
+Test #3 — KDE Plasma / Manjaro
+
+Distro: Ubuntu 25.10 "Questing"
+DE: KDE Plasma 6.5.5
+Session type: Wayland (KDE default)
+Result: ✅ Working
+Capture method used: mss via XWayland (Strategy 1)
+Notes: KDE does not block XGetImage through XWayland, so mss succeeds instantly. No external tools needed. All four search modes available (Search, Visual, Translate, Shopping).
+
+Test #3 — Don't Know / POP_OS
+
+Distro: Ubuntu 25.10 "Questing"
+DE: Dont know
+Session type: Wayland (KDE default)
+Result: ✅ Working
+Capture method used: mss via XWayland (Strategy 1)
+Notes: KDE does not block XGetImage through XWayland, so mss succeeds instantly. No external tools needed. All four search modes available (Search, Visual, Translate, Shopping).
+
+
